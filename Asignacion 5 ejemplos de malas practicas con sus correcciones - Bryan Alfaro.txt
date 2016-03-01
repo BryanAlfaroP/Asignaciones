@@ -1,0 +1,285 @@
+
+
+//Extraiga 5 ejemplos de casos diferentes donde no haya aplicado alguna de las buenas prácticas de programación estudiadas
+//y haga la corrección de tal forma que quede documentado como estaba el código antes y como quedó después del arreglo
+
+
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+/* Mediante la lectura de Defensive Programming fue posible extraer el siguiente error en el método hacerRetiro */
+
+//Versión original
+public String hacerRetiro (double montop){
+    movimiento = new Movimiento("Retiro", montop);
+    movimientos.add(movimiento);
+    setSaldo(saldo - montop);
+    return "El retiro fue realizado";
+}
+
+
+/*
+Uno de los errores más evidentes notados en el método anterior es la ausencia de una validación respecto con el saldo, 
+ya que es posible pedir un dinero con el que no se cuenta, de manera que obtenemos números negativos
+
+Por lo que el nuevo método quedaría como sigue
+*/
+
+//Nueva versión
+
+public void hacerRetiro (double montop){
+    
+    if (validarSaldo(montop)){
+    	setSaldo(saldo - montop);
+    	crearMovimiento("Retiro");
+    	enviarMensaje("El retiro fue realizado");
+    }
+    else
+    	enviarMensaje("El retiro no fue realizado");
+}
+
+private boolean validarSaldo(double montop){
+	return montop > saldo;
+}
+
+private void crearMovimiento(String tipoMovimiento){
+	movimiento = new Movimiento(tipoMovimiento, montop);
+    movimientos.add(movimiento);
+}
+
+private String enviarMensaje(String mensaje){
+	System.out.println(mensaje);
+}
+
+/*
+Luego de plantear nuevamente el método fue posible darse cuenta que además de la validación 
+era posible extraer otros métodos con el fin de aplicar lo aprendidos en otros capítulos 
+*/
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+/*
+Este método es extraída de un compilador que realice  
+Es claro notar que hay mucha información agrupada en este método
+*/
+
+//Versión original
+private void errorSintactico(){
+	ExisteErrores = true;
+	ContError++;
+	String errorAux = 
+			"Error sintactico con el token "+TA.getLexema()+
+			" en la fila " +TA.getFila()+
+			" desde la columna "+TA.getColumna_Inicial()+
+			" hasta la columna " +TA.getColumna_Final();
+	System.out.println(errorAux);
+	mensajeFinalParser+=errorAux+"\n";
+}
+
+
+/*
+Este método es separado mediante una linea en blanco y dos métodos para separar ideas 
+
+Por lo que el nuevo método quedaría como sigue
+*/
+
+
+//Nueva versión
+
+private void errorSintactico(){
+	ExisteErrores = true;
+	ContError++;
+
+	String errorAux = 
+			"Error sintactico con el token "+TA.getLexema()+
+			" en la fila " +TA.getFila()+
+			" desde la columna "+TA.getColumna_Inicial()+
+			" hasta la columna " +TA.getColumna_Final();
+
+	enviarMensaje(errorAux);
+	concatenarMensajeFinalParser(errorAux+"\n");
+}
+
+private void concatenarMensajeFinalParser(String mensaje){
+	//Se forma un mensaje el cual será mostrado cuando el parser finalice
+	mensajeFinalParser+=mensaje;
+}
+
+private void enviarMensaje(String mensaje){
+	System.out.println(mensaje);
+}
+
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 3 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+/*
+Mediante la lectura de High Quality Routines fue posible extraer el siguiente error en el método asignarClienteA_Cuenta   
+*/
+
+//Primera versión
+public static void asignarClienteA_Cuenta() throws IOException{
+    System.out.print("Ingrese el numero de cuenta ");
+    int numeroCuenta = Integer.parseInt(br.readLine().trim());
+    System.out.print("Ingrese el numero de cliente ");
+    int numeroCliente = Integer.parseInt(br.readLine().trim());
+    
+    arrayCuenta.get(numeroCuenta).setCliente(arrayCliente.get(numeroCliente));
+}
+
+
+/*
+Uno de los errores más evidentes es la fragilidad que hay en la asignación ya que podrían encontrarse punteros nulos,
+por esta razón como defensa se agregan un try/catch.
+Además fue necesario extraer en un nuevo método el mensaje extraído
+
+Por lo que la nueva implementación quedaría como sigue
+*/
+
+//Nueva versión
+public static void asignarClienteA_Cuenta() throws IOException{
+    System.out.print("Ingrese el numero de cuenta ");
+    int numeroCuenta = Integer.parseInt(br.readLine().trim());
+    System.out.print("Ingrese el numero de cliente ");
+    int numeroCliente = Integer.parseInt(br.readLine().trim());
+    
+    try {
+        arrayCuenta.get(numeroCuenta).setCliente(arrayCliente.get(numeroCliente));
+    } catch (Exception e) {
+        enviarMensaje("El número de cuenta o de cliente no corresponden.");
+    }
+}
+
+private void enviarMensaje(String mensaje){
+	System.out.println(mensaje);
+}
+
+
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 4 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+/*
+Mediante el siguiente ejemplo are alución a lo aprendido en cuanto al los nombres bien descriptivos y la documentación
+*/
+
+//Primera versión
+public void elegir_TS(){
+	if(tsLocalActiva){
+		TS =  TSLocal;
+	}else{
+		TS = TSGlobal;
+	}
+}
+
+
+//Nueva versión
+
+//Este método decidirá mediante una variable booleana cual tabla 
+//de símbolos se debe asignar a la instancia TS(Tabla de símbolos)
+public void asignarTablaSimbolos(){
+	if(tsLocalActiva){
+		TS =  TSLocal;
+	}else{
+		TS = TSGlobal;
+
+	}
+}
+
+/*
+En el primer método no era concreto mediante el nombre entender realmente que tarea 
+realizaba además no contaba con una pequeña documentación descriptiva 
+*/
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 5 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+/* Mediante la lectura de clases fue posible determinar el siguiente ejemplo el cual presenta problemas de encapsulamiento */
+
+//Primera versíon
+public class Token {
+    public int CodigoFamilia, CodigoError, Fila, Columna_Inicial, Columna_Final;
+    String Lexema;
+
+    public Token(int CodigoFamilia, int CodigoError, int Fila, int Columna_Inicial, int Columna_Final, String Lexema) {
+        this.CodigoFamilia = CodigoFamilia;
+        this.CodigoError = CodigoError;
+        this.Fila = Fila;
+        this.Columna_Inicial = Columna_Inicial;
+        this.Columna_Final = Columna_Final;
+        this.Lexema = Lexema;
+    }
+}
+
+
+/* Para esta nueva versión determine pasar los atributos de públicos a privados y crear encapsulamiento mediante setter y getter */
+
+//Nueva versión
+public class Token {
+    private int CodigoFamilia, CodigoError, Fila, Columna_Inicial, Columna_Final;
+    String Lexema;
+
+    public Token(int CodigoFamilia, int CodigoError, int Fila, int Columna_Inicial, int Columna_Final, String Lexema) {
+        this.CodigoFamilia = CodigoFamilia;
+        this.CodigoError = CodigoError;
+        this.Fila = Fila;
+        this.Columna_Inicial = Columna_Inicial;
+        this.Columna_Final = Columna_Final;
+        this.Lexema = Lexema;
+    }
+
+    public int getCodigoFamilia() {
+        return CodigoFamilia;
+    }
+
+    public void setCodigoFamilia(int CodigoFamilia) {
+        this.CodigoFamilia = CodigoFamilia;
+    }
+
+    public int getCodigoError() {
+        return CodigoError;
+    }
+
+    public void setCodigoError(int CodigoError) {
+        this.CodigoError = CodigoError;
+    }
+
+    public int getFila() {
+        return Fila;
+    }
+
+    public void setFila(int Fila) {
+        this.Fila = Fila;
+    }
+
+    public int getColumna_Inicial() {
+        return Columna_Inicial;
+    }
+
+    public void setColumna_Inicial(int Columna_Inicial) {
+        this.Columna_Inicial = Columna_Inicial;
+    }
+
+    public int getColumna_Final() {
+        return Columna_Final;
+    }
+
+    public void setColumna_Final(int Columna_Final) {
+        this.Columna_Final = Columna_Final;
+    }
+
+    public String getLexema() {
+        return Lexema;
+    }
+
+    public void setLexema(String Lexema) {
+        this.Lexema = Lexema;
+    }   
+}

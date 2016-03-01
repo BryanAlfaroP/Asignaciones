@@ -1,0 +1,300 @@
+//Extraiga 5 ejemplos diferentes donde haya aplicado las buenas prácticas de codificación estudiadas en las lecturas
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+/*
+Esta clase es extraída de una pequeña tarea realizada hace poco tiempo.
+El fin es mostrar la utilización de una técnica aprendida en la lectura de formato. 
+En esta clase es posible apreciar la utilización de una línea para separar contenidos, ideas y métodos.
+*/
+
+
+/**
+ * @author Bryan
+ */
+
+public class Fisico extends Cliente{
+    private String nombre;
+    private String apellido1;
+    private String apellido2;
+    
+    public Fisico(String nombre, String apellido1, String apellido2){
+        super();
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+    }
+    
+    public String toString(){
+        return "\nNombre: "+nombre+"\nApellido1: "+apellido1+"\nApellido2: "+apellido2+"\n"+super.toString();
+    }   
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido1() {
+        return apellido1;
+    }
+
+    public String getApellido2() {
+        return apellido2;
+    }   
+}
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+/*
+El fin es mostrar la utilización de una técnica aprendida en la lectura de formato. 
+El siguiente código busca mostrar que una función que invoca a otra deben de estar verticalmente próximas, 
+la función invocada debe estar en la parte inferior cerca de la que la necesita para poder entender mejor su funcionamiento.
+*/
+
+
+public void menu() throws IOException{
+    while(true){
+        mostrarMenu();
+
+        System.out.print("\nEliga una opcion ");
+        String opcion = br.readLine().trim();
+        
+        if (opcion.equals("3"))
+            break;
+        switch(opcion){
+            case "1":
+                crearCuenta();
+                break;
+            case "2":
+                crearClientes();
+                break;
+            case "3":
+                break;
+        }
+    }
+}
+
+
+public static void mostrarMenu(){
+    System.out.println("1) Crear Cuenta");
+    System.out.println("2) Crear Clientes");
+}
+
+public static void crearCuenta() throws IOException{
+    System.out.print("\nIngrese el monto inicial ");
+    int monto = Integer.parseInt(br.readLine().trim());
+    Cuenta cuenta = new Cuenta(monto);
+    arrayCuenta.add(cuenta);
+}
+
+public static void crearClientes() throws IOException{
+    menuCrearClientes();
+
+    System.out.print("\nEliga una opcion ");
+    String opcion = br.readLine().trim();
+
+    switch(opcion){
+        case "1":
+            crearClienteFisico();
+            break;
+        case "2":
+            crearClienteJuridico();
+            break;
+    }
+    
+}
+
+public static void menuCrearClientes(){
+    System.out.println("1) Crear cliente fisico");
+    System.out.println("2) Crear cliente Juridico");
+    System.out.println("3) Cacelar");
+}
+
+public static void crearClienteFisico() throws IOException{
+    System.out.print("Nombre ");
+    String nombre = br.readLine().trim();
+    System.out.print("Primer Apellido ");
+    String apellido1 = br.readLine().trim();
+    System.out.print("Segundo Apellido ");
+    String apellido2 = br.readLine().trim();
+    
+    Fisico fisico = new Fisico(nombre, apellido1, apellido2);
+    arrayCliente.add(fisico);
+}
+
+public static void crearClienteJuridico() throws IOException{
+    System.out.print("Razon social ");
+    String razonSocial = br.readLine().trim();
+    System.out.print("Tipo negocio ");
+    String tipoNegocio = br.readLine().trim();
+    
+    Juridico juridico = new Juridico(razonSocial, tipoNegocio);
+    arrayCliente.add(juridico);
+}
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 3 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+/*
+Este método pertenece fue realizado para una tarea corta
+El fin es mostrar la utilización de una técnica aprendida en la lectura de Funciones. 
+Este método realizaba una única tarea ya que todo método debe hacer una sola cosa.
+*/
+
+
+public void crearClienteJuridico() throws IOException{
+    System.out.print("Razon social ");
+    String razonSocial = br.readLine().trim();
+    System.out.print("Tipo negocio ");
+    String tipoNegocio = br.readLine().trim();
+    
+    juridico = new Juridico(razonSocial, tipoNegocio);
+    arrayCliente.add(juridico);
+}
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 4 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+/*
+Este ejemplo fue extraído de una librería creada por mí para la lectura de archivos en JAVA
+El fin es mostrar la utilización de una técnica aprendida en la lectura de Formato. 
+Mediante este ejemplo se muestra como las variables locales de una función deberían ir en la parte superior.
+Es posible ver que solo hace una cosa además que tiene las ideas separadas por líneas en blanco
+*/
+
+
+public String LeerLinea(int pPocicion , String pName) throws IOException{
+    f = new File(path+pName+".txt");
+    FileReader r = new FileReader(f);
+    BufferedReader buffer = new BufferedReader(r);
+    
+    String name = "";
+    int contador = 0;
+    
+    while (contador < pPocicion && name!= null){
+        name = buffer.readLine();
+        contador++;
+    }
+
+    if ( isNull(name) ){
+        enviarMensaje("No existe esta pocicion. la ultima pocicion es: "+contador);
+        return null;
+    }
+    else
+        return name;             
+}
+
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Ejemplo 5 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+/*
+Este ejemplo fue extraído de una prueba corta
+El fin es mostrar la utilización de algunas técnicas aprendidas en la lectura de Clases. 
+Se puede ver la utilización de tipos de datos abstractos, se separa la lógica de clientes distintos, nombres bien definidos
+*/
+
+
+public interface Comparable {
+    public boolean menorQue(Comparable otroObjetop);
+}
+
+public abstract class Cliente implements Comparable{
+    private static int cantidadInstancias = 0;
+    private int codigo;
+    private Date fechaRegistro;
+    private ArrayList<Cuenta> ctas;
+    
+    public Cliente(){
+        this.ctas = new ArrayList<>();
+        setCodigo();
+        setFechaRegistro();
+    }
+    
+    public String toString(){
+        return "Fecha de registro: "+fechaRegistro+
+                ", Codigo: "+codigo+
+                ", Numero de cuentas: "+ctas.size()+"\n";  
+    }
+    
+     private void setCodigo(){
+        codigo = cantidadInstancias++;
+    }
+     
+     private void setFechaRegistro(){
+        fechaRegistro = new Date();
+    }
+     
+    public void setCtas(Cuenta ctasp) {
+        this.ctas.add(ctasp);
+    }
+}
+
+
+public class Fisico extends Cliente{
+    private String nombre;
+    private String apellido1;
+    private String apellido2;
+    
+    public Fisico(String nombrep, String apellido1, String apellido2p){
+        super();
+        this.nombre = nombrep;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2p;
+    }
+    
+    public String toString(){
+        return "\nNombre: "+nombre+"\nApellido1: "+apellido1+"\nApellido2: "+apellido2+"\n"+super.toString();
+    }   
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido1() {
+        return apellido1;
+    }
+
+    public String getApellido2() {
+        return apellido2;
+    }
+
+    @Override
+    public boolean menorQue(Comparable otroObjetop) {
+        //Implementar código
+        return true;
+    }
+}
+
+
+public class Juridico extends Cliente{
+    private String razonSocial;
+    private String tipoNegocio;
+    
+    public Juridico (String razonSocialp, String tipoNegocio){
+        super();
+        this.razonSocial = razonSocialp;
+        this.tipoNegocio = tipoNegocio;
+    }
+    
+    public String toString(){
+        return "\nRazon social: "+razonSocial+"\nTipo de negocio: "+tipoNegocio+"\n"+super.toString();
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public String getTipoNegocio() {
+        return tipoNegocio;
+    }
+    
+    @Override
+    public boolean menorQue(Comparable otroObjetop) {
+        //Implementar código
+        return true;
+    }
+}
