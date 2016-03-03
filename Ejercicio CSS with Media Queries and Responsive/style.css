@@ -5,12 +5,13 @@
  * Use is subject to license terms.
  * Filename: style.css
  */
- body{
-	border: 1px solid #000;
-	width: 800px;
-	padding: 25px;
-	margin: 0 auto;
 
+
+body{
+	width: 800px;
+	border: 1px solid #000;
+	padding: 25px;
+	margin: 0px auto;
 }
 
 header h1{
@@ -18,15 +19,41 @@ header h1{
 }
 
 article{
+	display: flex;
 
-	overflow: hidden;
-	width: 800px;
-	margin: 0 auto;
+	justify-content: space-around;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 section{
 	width: 200px;
 	height: 330px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+@media screen and (max-width:799px){
+	body{
+		width: 80%;
+	}
+}
+
+@media screen and (max-width:550px){
+	section{
+		width: 90%;
+		height: 330px;
+	}
+}
+
+@media screen and (max-width:320px){
+	section{
+		width: 200px;
+		height: 330px;
+	}
 }
 
 p{
@@ -47,19 +74,14 @@ p{
 }
 
 .facebook{
-	float: left;
 	background-color: #4149EF;
-	margin-right: 100px;
 }
 
 .twitter{
-	float: left;
 	background-color: #5391F4;
-	margin-right: 100px;
 }
 
 .instagram{
-	float: left;
 	background-color: #5D2D0F;
 }
 
@@ -67,8 +89,7 @@ p{
 	background: url('imgs/Redes-Sociales.png') no-repeat -60px -62px;
 	width: 51px;
 	height: 50px;
-	margin-left: 75px;
-	margin-top: 40px;
+	margin-bottom: 30px;	
 }
 
 #img-facebook:hover {
@@ -79,8 +100,7 @@ p{
 	background: url('imgs/Redes-Sociales.png') no-repeat -3px -62px;
 	width: 51px;
 	height: 50px;
-	margin-left: 75px;
-	margin-top: 35px;
+	margin-bottom: 30px;
 }
 
 #img-twitter:hover {
@@ -91,7 +111,7 @@ p{
 	background: url('imgs/Redes-Sociales.png') no-repeat -117px -62px;
 	width: 51px;
 	height: 50px;
-	margin-left: 75px;
+	margin-bottom: 30px;
 }
 
 #img-instagram:hover {
