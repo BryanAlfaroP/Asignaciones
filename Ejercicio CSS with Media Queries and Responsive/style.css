@@ -22,7 +22,7 @@ header h1{
 	text-align: center;
 }
 
-section{
+article{
 	width: 200px;
 	height: 330px;
 
@@ -33,7 +33,7 @@ section{
 }
 
 @media screen and (max-width: 320px){
-	section{
+	article{
 		width: 200px;
 		height: 350px;
 	}

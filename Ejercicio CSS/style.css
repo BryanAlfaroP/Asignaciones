@@ -17,14 +17,14 @@ header h1{
 	text-align: center;
 }
 
-article{
+section{
 
 	overflow: hidden;
 	width: 800px;
 	margin: 0 auto;
 }
 
-section{
+article{
 	width: 200px;
 	height: 330px;
 }
