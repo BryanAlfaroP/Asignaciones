@@ -32,19 +32,6 @@ article{
 	align-items: center;
 }
 
-@media screen and (max-width: 320px){
-	article{
-		width: 200px;
-		height: 350px;
-	}
-}
-
-@media screen and (max-width: 799px){
-	body{
-		width: 100%;
-	}
-}
-
 p{
 	color: #FFF;
 	padding: 10PX;
@@ -72,28 +59,6 @@ p{
 
 .instagram{
 	background-color: #5D2D0F;
-}
-
-@media screen and (max-width : 480px) {
-	.facebook{
-		background-color: #27782d;
-	}
-
-	.twitter{
-		background-color: #f42929;
-	}
-
-	.instagram{
-		background-color: #782740;
-	}
-
-	body{
-		padding: 0px;
-	}
-
-	.conteiner{
-		padding: 0px;
-	}
 }
 
 #img-facebook {
@@ -127,4 +92,61 @@ p{
 
 #img-instagram:hover {
 	background: url('imgs/Redes-Sociales.png') no-repeat -117px -5px;
+}
+
+@media screen and (max-width: 320px){
+	article{
+		width: 200px;
+		height: 350px;
+	}
+}
+
+@media screen and (max-width: 799px){
+	body{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width : 480px) {
+	body{
+		padding: 0px;
+	}
+
+	.conteiner{
+		padding: 0px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.facebook {
+		background-color: #782740;
+	}
+	.instagram {
+		background-color: #782740;
+	}
+	.twitter {
+		background-color: #782740;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 990px) {
+	.facebook {
+		background-color: #f42929;
+	}
+	.instagram {
+		background-color: #f42929;
+	}
+	.twitter {
+		background-color: #f42929;
+	}
+}
+@media screen and (min-width: 991px) and (max-width: 1198px) {
+	.facebook {
+		background-color: #27782d;
+	}
+	.instagram {
+		background-color: #27782d;
+	}
+	.twitter {
+		background-color: #27782d;
+	}
 }
