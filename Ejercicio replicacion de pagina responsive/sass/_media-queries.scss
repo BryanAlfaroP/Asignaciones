@@ -1,0 +1,61 @@
+/*!
+ * All Rights Reserved
+ * This software is proprietary information of
+ * Intelligent Sense
+ * Use is subject to license terms.
+ * Filename: _media-queries.scss
+ */
+
+
+@media only screen and (max-width: 768px){
+	.row .col-small{
+		width: 100%;
+		clear: both;	
+	}
+	.container{
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+@media handheld, only screen and (max-width: 600px) {
+	nav{
+		float: left;
+		margin-top:67px;
+		left:12px;
+		border:none;
+		width:90%;
+		ul{
+			margin: 0px;
+			padding: 0px;
+			float: none;
+			li{
+				float: none;
+				a{
+					font-size:17px;
+					line-height:normal;
+					color:#666666;
+					text-align:left;
+					text-decoration:none;
+					border-bottom: 1px solid #C8C8C8;
+					&:hover{
+						color: #888;
+					}
+				}
+			}
+		}
+	}
+
+	.box-intro{
+		width: 100%;
+		position: relative;
+		float: left;
+		background:transparent;
+		margin-top:300px;
+		margin-bottom:20px;
+	}
+		
+	.logo{
+		margin-left:18px;
+	}
+}

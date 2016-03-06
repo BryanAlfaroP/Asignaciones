@@ -1,0 +1,204 @@
+/*!
+ * All Rights Reserved
+ * This software is proprietary information of
+ * Intelligent Sense
+ * Use is subject to license terms.
+ * Filename: _style.scss
+ */
+
+ 
+body, .row{
+	margin: 0 auto;
+}
+
+body{
+	height: 100%;
+	border-top: 10px solid $black-color;
+	background-image: url(../img/bg.png);
+    background-repeat: repeat;
+}
+
+header, 
+footer, 
+.row, 
+.box-intro, 
+.group-12{
+	width: 100%;
+}
+
+header{
+	
+	height: 100px;
+
+	img {
+		margin: 16px 13px 8px 0;
+		padding: 8px;
+	}
+}
+
+nav{
+	width: 540px;
+	top: 35px;
+	right: 3px;
+	border-top: $line-gray;
+	border-bottom: $line-gray;
+	position: absolute;
+
+	ul{
+		list-style: none;
+
+		li{ 
+			float: left;
+			margin-left: 12px;
+			line-height: normal;
+
+			a {
+				display: block;
+				margin: 10px 10px 10px 0px;
+				color: $black-color;
+				margin-top: 10px;
+				padding-bottom: 5px;
+			}
+			:hover{
+				color: $gray-color;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+footer{
+	height: 90px;
+	clear: both;
+	background-color: $black-color;
+
+	.footer-box{
+		margin:  40px;
+		color: $white-color;
+	}
+
+	a{
+	    text-decoration: underline;
+		color: $gray-color;
+	}
+}
+
+h3, 
+h4, 
+h5{
+	text-align: left;
+	display: block;
+}
+
+h3 {
+	
+	color: $firebrick-color;
+	margin-bottom: 6px;
+    padding-bottom: 5px;
+}
+
+h4 {
+	color: $firebrick-color;
+	margin: 25px 0px 13px 0px;
+	padding-bottom: 5px;
+	
+	
+}
+
+h5 {
+	color: $gray-color;
+    margin-bottom: 8px;
+    padding-top: 3px;
+    font-weight: 600;
+}
+
+img{
+	height: auto;
+	max-width: 100%;
+    float: left;
+}
+
+blockquote {
+	display: block;
+}
+
+a{
+	text-decoration: none;
+	color: $black-color;
+}
+
+p {
+    display: block;
+}
+
+.container{
+	padding-left: 20px;
+	padding-right: 20px;
+	position: relative;
+
+	.row{
+
+		.box-intro{
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.button{
+	background-color: $black-color;
+	display: inline-block;
+	color: $white-color;
+	text-aling: center;
+	text-decoration: done;
+	padding: 12px 18px;
+	margin-top: 14px;
+	@include border-radius(5px);
+
+	&:hover{
+		background-color: $gray-color;
+	}
+}
+
+.line-bottom{
+	border-bottom: $line-gray;
+}
+
+.line-top {
+	border-top: $line-gray;	
+}
+
+.photo-hover{
+    margin: 16px 13px 8px 0;
+	padding: 8px;
+	float: left;
+	background-color: white;
+	border: 1px solid $teal-color;
+
+	img{
+		&:hover{
+			opacity: 0.9;
+		}
+	}
+}
+
+.group-12 {
+    float: left;;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.box-blockquote {
+	background: $light-gray-color;
+    border: 1px solid $dark-gray-color;
+    color: #c33;
+    margin-top: 20px;
+    margin-bottom: 20px;
+	padding: 16px;
+    width: 96%;
+}
+
+.footer-box{
+	div{
+		text-align: center;
+	}
+}
