@@ -8,95 +8,84 @@
 
 window.addEventListener('load', main);
 
-/** This function starts the logic. */
+var pokemonAttack = {
+	'name': 'Pikachu',
+	'tipo': 'fire',
+	'attack': '30',
+	'defense': '20'
+};
+
+var pokemonDefense = {
+	'name': 'scuartul',
+	'tipo': 'grass',
+	'attack': '15',
+	'defense': '50'
+};
+
+/** This function starts the flow of the program */
 function main() {
-	var pokemonAttack = {
-		"name": "Charmander",
-		"tipo": "fire",
-		"attack": "30",
-		"defense": "20"
-	};
-
-	var pokemonDefense = {
-		"name": "Bulbasaur",
-		"tipo": "grass",
-		"attack": "15",
-		"defense": "50"
-	};
-
-	var damageNumber = Math.round(damage(pokemonAttack, pokemonDefense));
+	damage(pokemonAttack, pokemonDefense);
 };
 
 /**
- * Calculates the damage caused by a Pokemon's attack. 
- * @param {JSON} pPokemonAttack
- * @param {JSON} pPokemonDefense
+ * Calculate the damage caused by a pokemon's attack.
+ * @param {string} pPokemonAttack.
+ * @param {string} pPokemonDefense.
  */
 function damage(pPokemonAttack, pPokemonDefense) {
 	var attack = pPokemonAttack.attack;
 	var defense = pPokemonDefense.defense;
 	var effectiveness = getEffectivenes(pPokemonAttack, pPokemonDefense);
-	var finalDamage = 50*(attack/defense)*effectiveness;
-
-	return finalDamage;
+	var final_damage = 50*(attack/defense)*effectiveness;
 };
 
 /**
- * Calculates the effectiveness caused by a Pokemon's attack. 
- * @param {JSON} pPokemonAttack
- * @param {JSON} pPokemonDefense
+ * Calculate the effectiveness caused by a pokemon's attack.
+ * @param {string} pPokemonAttack.
+ * @param {string} pPokemonDefense.
  */
 function getEffectivenes(pPokemonAttack, pPokemonDefense) {
-	var superEffective = 2;
+	var superEfective = 2;
 	var neutral = 1;
-	var lessEffective = 0.5;
+	var lessEfective = 0.5;
 	
-	if(pPokemonAttack.tipo === "fire") {
+	if(pPokemonAttack.tipo === 'fire') {
 
-		if(pPokemonDefense.tipo === "water") {
-			return lessEffective;
-		} else if (pPokemonDefense.tipo === "electric") {
+		if(pPokemonDefense.tipo === 'water') {
+			return lessEfective;
+		} else if (pPokemonDefense.tipo === 'electric') {
 			return neutral;
-		} else if (pPokemonDefense.tipo === "grass") {
-			return superEffective;
-		} else if (pPokemonDefense.tipo === "fire") {
-			return lessEffective;
+		} else if (pPokemonDefense.tipo === 'grass') {
+			return superEfective;
 		}
-	} else if(pPokemonAttack.tipo === "grass") {
+	} else if(pPokemonAttack.tipo === 'grass') {
 
-		if(pPokemonDefense.tipo === "fire") {
-			return lessEffective;
-		} else if (pPokemonDefense.tipo === "electric") {
+		if(pPokemonDefense.tipo === 'fire') {
+			return lessEfective;
+		} else if (pPokemonDefense.tipo === 'electric') {
 			return neutral;
-		} else if (pPokemonDefense.tipo === "water") {
-			return superEffective;
-		} else if (pPokemonDefense.tipo === "grass") {
-			return lessEffective;
+		} else if (pPokemonDefense.tipo === 'water') {
+			return superEfective;
 		}
-	} else if(pPokemonAttack.tipo === "water") {
+	} else if(pPokemonAttack.tipo === 'water') {
 
-		if(pPokemonDefense.tipo === "electric") {
-			return lessEffective;
-		} else if (pPokemonDefense.tipo === "fire") {
-			return superEffective;
-		} else if (pPokemonDefense.tipo === "grass") {
-			return lessEffective;
-		} else if (pPokemonDefense.tipo === "water") {
-			return lessEffective;
+		if(pPokemonDefense.tipo === 'electric') {
+			return lessEfective;
+		} else if (pPokemonDefense.tipo === 'fire') {
+			return superEfective;
+		} else if (pPokemonDefense.tipo === 'grass') {
+			return lessEfective;
 		}
-	} else if(pPokemonAttack.tipo === "electric") {
+	} else if(pPokemonAttack.tipo === 'electric') {
 
-		if(pPokemonDefense.tipo === "fire") {
+		if(pPokemonDefense.tipo === 'fire') {
 			return neutral;
-		} else if (pPokemonDefense.tipo === "water") {
-			return superEffective;
-		} else if (pPokemonDefense.tipo === "grass") {
+		} else if (pPokemonDefense.tipo === 'water') {
+			return superEfective;
+		} else if (pPokemonDefense.tipo === 'grass') {
 			return neutral;
-		} else if (pPokemonDefense.tipo === "electric") {
-			return lessEffective;
 		}
-	} else {
+	} else{
 		return 1;
 	}
 };
-

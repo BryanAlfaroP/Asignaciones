@@ -1,0 +1,36 @@
+{{!--
+	All Rights Reserved
+	This software is proprietary information of
+	Intelligent Sense
+	Use is subject to license terms.
+	Filename: frame.handlebars
+--}}
+
+{{#each users}}
+	<h1 class="name-rankin">{{Name}}</h1>
+	<div class="content-rankin">
+		<div class="content-photo-rankin">
+			<h1 class="h1-rankin">{{sumaUno @index}}</h1>
+			<img class="img-rankin" src="{{Profile}}">
+			<button class="btn-Show" id="btn_Show{{sumaUno @index}}">Show</button>
+			<button class="btn-Hide" id="btn_Hide{{sumaUno @index}}">Hide</button>			
+		</div>
+		<div id="div-table-{{sumaUno @index}}" class="content-table-rankin">
+			<table class="tbl-rankin">
+				<tr class="tr-rankin">
+					<td class="td-rankin">Tweets</td>
+				  	<td class="td-rankin">{{Tweets}}</td>
+				</tr>
+				<tr class="tr-rankin">
+					<td class="td-rankin">Followers</td>
+				  	<td class="td-rankin">{{Followers}}</td>
+				</tr>
+				<tr class="tr-rankin">
+					<td class="td-rankin">Retweets</td>
+				  	<td class="td-rankin">{{ReTweets}}</td>
+				  	<td class="td-rankin"><a href="https://twitter.com/account/redirect_by_id/{{sumaUno @index}}">[handle]</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+{{/each}}

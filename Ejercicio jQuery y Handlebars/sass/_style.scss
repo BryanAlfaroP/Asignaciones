@@ -1,0 +1,69 @@
+/*!
+ * All Rights Reserved
+ * This software is proprietary information of
+ * Intelligent Sense
+ * Use is subject to license terms.
+ * Filename: _style.scss
+ */
+
+
+body{
+	padding-left: 40px;
+}
+
+.name-rankin{
+	margin-top: 30px;
+}
+
+.content-rankin{
+	border: 2px solid $black;
+	display: inline-block;
+	min-width: 170px;
+	position: relative;
+	overflow: hidden;
+	clear: both;
+	@include border-radius(10px);
+		
+	.content-photo-rankin{
+		max-width: 150px;
+		position: relative;
+		padding: 20px 10px;
+		float: left;
+
+		.h1-rankin{
+			position: absolute;
+			right: 10px;
+		}
+
+		.img-rankin{
+			max-width: 100%;
+			height: auto;
+			@include border-radius(5px);
+		}
+
+		.btn-Show, .btn-Hide{
+			position: absolute;
+			width: 100px;
+			bottom: 25px;
+			right: 20%; 
+			@include border-radius(5px);
+		}
+	}
+
+	.content-table-rankin{
+		float: left;
+		width: 290px;
+		position: relative;;
+		
+		.tbl-rankin{
+			margin: 20px 10px;
+
+			.tr-rankin{
+
+				.td-rankin{
+					padding: 30px 25px 0px 20px;
+				}
+			}
+		}
+	}
+}
