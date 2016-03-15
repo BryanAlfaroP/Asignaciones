@@ -1,0 +1,35 @@
+
+<!--
+	All Rights Reserved
+	This software is proprietary information of
+	Intelligent Sense
+	Use is subject to license terms.
+	Filename: home.html
+-->
+
+<div class="container-buttons">
+	<button class="buttons" ng-repeat="letter in letters" ng-click="getFilterLetter(letter)">{{letter}}</button>
+</div>
+<div class="container-parent" ng-repeat="user in users">
+	<div class="container-users">
+		<div class="container-img">
+			<img class="img-user" ng-src="{{user.Profile}}" alt="">		
+		</div>
+		<div class="container-information">
+			<table class="table-iformation">
+				<tr>
+					<td class="td-information-user">{{user.Name}}</td>
+				</tr>
+				<tr>
+					<td class="td-information-user" >{{user.Tweets}}</td>
+				</tr>
+				<tr>
+					<td class="td-information-user" >{{user.Followers}}</td>
+				</tr>
+				<tr>
+					<td class="td-information-user" >{{user.ReTweets}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

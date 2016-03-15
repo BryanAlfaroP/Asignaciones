@@ -1,0 +1,60 @@
+
+/*!
+ * All Rights Reserved
+ * This software is proprietary information of
+ * Intelligent Sense
+ * Use is subject to license terms.
+ * Filename: _style.scss
+ */
+
+
+body{
+	padding-left: 40px;
+}
+
+.container-buttons{
+	margin: 30px 0;
+}
+
+.buttons{
+	margin-right: 20px;
+	width: 50px;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
+.container-users{
+	border: 2px solid $black;
+	display: inline-block;
+	min-width: 170px;
+	position: relative;
+	overflow: hidden;
+	clear: both;
+	margin-bottom: 30px;
+
+	.container-img{
+		max-width: 150px;
+		position: relative;
+		float: left;
+		
+
+
+		.img-user{
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	.container-information{
+		float: left;
+		width: 200px;
+		position: relative;
+
+		.table-iformation{
+			.td-information-user{
+				padding: 20px 25px 0px 20px;
+			}
+		}
+	}
+}
